@@ -36,5 +36,6 @@ loop.step = function()
 end
 
 loop.pcall = pcall
+loop.xpcall = xpcall
 
 return loop

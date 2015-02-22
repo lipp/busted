@@ -406,7 +406,7 @@ next_test = function()
     this_test.done = done
 
     local trace
-    local ok, err = xpcall(
+    local ok, err = suite.loop.xpcall(
       function()
         this_test.f(wrap_done(done))
       end,
@@ -718,6 +718,7 @@ busted.setloop = function(loop)
      assert(loop.step)
      suite.loop = loop
   end
+  suite.loop.xpcall = suite.loop.xpcall or suite.loop.pcall
 end
 
 busted.run_internal_test = function(describe_tests)
