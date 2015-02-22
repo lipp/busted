@@ -50,6 +50,7 @@ build = {
     ["busted.languages.ja"] = "src/languages/ja.lua",
     ["busted.loop.default"] = "src/loop/default.lua",
     ["busted.loop.ev"] = "src/loop/ev.lua",
+    ["busted.loop.lluv"] = "src/loop/lluv.lua",
     ["busted.loop.copas"] = "src/loop/copas.lua",
   },
   install = {
