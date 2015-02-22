@@ -38,4 +38,4 @@ if commandExists cygpath ; then
 fi
 
 # Execution
-$COMMAND $BOOTSTRAP_PATH $*
+$BOOTSTRAP_PATH $*
