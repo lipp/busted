@@ -43,12 +43,12 @@ else
     setloop('lluv')
     it('this should timeout',function(done)
       settimeout(0.01)
-      lluv.timer(loop):start(100, async(function() done() end))
+      uv.timer(loop):start(100, async(function() done() end))
     end)
       
     it('this should not timeout',function(done)
       settimeout(0.1)
-      lluv.timer(loop):start(10, async(function() done() end))
+      uv.timer(loop):start(10, async(function() done() end))
     end)
   end)
   

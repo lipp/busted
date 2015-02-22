@@ -426,24 +426,28 @@ next_test = function()
       end
 
       -- remove all frames after the last frame found in the test file
-      local lines = {}
-      local j = 0
-      local last_j = 0
-      for line in trace:gmatch("[^\r\n]+") do
-        j = j + 1
-        lines[j] = line
-        local fname, lineno = line:match('%s+([^:]+):(%d+):')
-        if fname == current_test_filename then
-          last_j = j
-        end
-      end
-      -- the error may not originate from testfile in all cases
-      if last_j then
-        trace = table.concat(lines, trace:match("[\r\n]+"), 1, last_j)
-      end
+      if trace then
+         local lines = {}
+         local j = 0
+         local last_j = 0
+         for line in trace:gmatch("[^\r\n]+") do
+            j = j + 1
+            lines[j] = line
+            local fname, lineno = line:match('%s+([^:]+):(%d+):')
+            if fname == current_test_filename then
+               last_j = j
+            end
+         end
+         -- the error may not originate from testfile in all cases
+         if last_j then
+            trace = table.concat(lines, trace:match("[\r\n]+"), 1, last_j)
+         end
 
-      err, trace = moon.rewrite_traceback(err, trace)
-
+         err, trace = moon.rewrite_traceback(err, trace)
+      else
+         trace = current_test_filename .. ':???'
+      end
+      
       this_test.status.type = 'failure'
       this_test.status.trace = trace
       this_test.status.err = err
